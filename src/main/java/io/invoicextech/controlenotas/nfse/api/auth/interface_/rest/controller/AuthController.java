@@ -1,0 +1,83 @@
+package io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.controller;
+
+import io.invoicextech.controlenotas.nfse.api.auth.application.dto.LoginInput;
+import io.invoicextech.controlenotas.nfse.api.auth.application.dto.LoginOutput;
+import io.invoicextech.controlenotas.nfse.api.auth.application.dto.RegisterAccountantInput;
+import io.invoicextech.controlenotas.nfse.api.auth.application.dto.RegisterCompanyInput;
+import io.invoicextech.controlenotas.nfse.api.auth.application.dto.UserOutput;
+import io.invoicextech.controlenotas.nfse.api.auth.application.port.TokenProvider;
+import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.GetAuthenticatedUserUseCase;
+import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.LoginUserUseCase;
+import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.RegisterAccountantUserUseCase;
+import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.RegisterCompanyUserUseCase;
+import io.invoicextech.controlenotas.nfse.api.auth.domain.model.RoleName;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.mapper.ResponseMapper;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.LoginRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.RegisterAccountantRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.RegisterCompanyRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.AuthResponse;
+import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.UserResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    private final RegisterCompanyUserUseCase registerCompanyUserUseCase;
+    private final RegisterAccountantUserUseCase registerAccountantUserUseCase;
+    private final LoginUserUseCase loginUserUseCase;
+    private final GetAuthenticatedUserUseCase getAuthenticatedUserUseCase;
+    private final TokenProvider tokenProvider;
+
+    public AuthController(RegisterCompanyUserUseCase registerCompanyUserUseCase,
+                          RegisterAccountantUserUseCase registerAccountantUserUseCase,
+                          LoginUserUseCase loginUserUseCase,
+                          GetAuthenticatedUserUseCase getAuthenticatedUserUseCase,
+                          TokenProvider tokenProvider) {
+        this.registerCompanyUserUseCase = registerCompanyUserUseCase;
+        this.registerAccountantUserUseCase = registerAccountantUserUseCase;
+        this.loginUserUseCase = loginUserUseCase;
+        this.getAuthenticatedUserUseCase = getAuthenticatedUserUseCase;
+        this.tokenProvider = tokenProvider;
+    }
+
+    @PostMapping("/register/company")
+    public ResponseEntity<AuthResponse> registerCompany(@RequestBody @Validated RegisterCompanyRequest request) {
+        UserOutput user = registerCompanyUserUseCase.execute(new RegisterCompanyInput(
+                request.name(), request.email(), request.password(), request.confirmPassword(), request.cnpj()
+        ));
+        // optional: return JWT already
+        String token = tokenProvider.generateToken(user.id(), user.email(),
+                user.roles().stream().map(RoleName::valueOf).collect(java.util.stream.Collectors.toSet()), user.documentType());
+        AuthResponse resp = new AuthResponse(token, "Bearer", tokenProvider.getExpirationMillis() / 1000L, ResponseMapper.toResponse(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+    }
+
+    @PostMapping("/register/accountant")
+    public ResponseEntity<AuthResponse> registerAccountant(@RequestBody @Validated RegisterAccountantRequest request) {
+        UserOutput user = registerAccountantUserUseCase.execute(new RegisterAccountantInput(
+                request.name(), request.email(), request.password(), request.confirmPassword(), request.cpf()
+        ));
+        String token = tokenProvider.generateToken(user.id(), user.email(),
+                user.roles().stream().map(RoleName::valueOf).collect(java.util.stream.Collectors.toSet()), user.documentType());
+        AuthResponse resp = new AuthResponse(token, "Bearer", tokenProvider.getExpirationMillis() / 1000L, ResponseMapper.toResponse(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(resp);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody @Validated LoginRequest request) {
+        LoginOutput out = loginUserUseCase.execute(new LoginInput(request.username(), request.password()));
+        return ResponseEntity.ok(ResponseMapper.toResponse(out));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserResponse> me() {
+        UserOutput user = getAuthenticatedUserUseCase.execute();
+        return ResponseEntity.ok(ResponseMapper.toResponse(user));
+    }
+}
