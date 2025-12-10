@@ -6,13 +6,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-/** Aggregate root for User. Pure domain model, no framework dependencies. */
 public class User {
     private Long id;
     private String name;
-    private String email; // unique
-    private String passwordHash; // hashed
-    private String document; // normalized digits only
+    private String email;
+    private String passwordHash;
+    private String document;
     private DocumentType documentType;
     private final Set<RoleName> roles = new HashSet<>();
     private boolean active = true;
@@ -53,7 +52,6 @@ public class User {
         return this.roles.contains(role);
     }
 
-    // Getters and setters for persistence mapping in infra
     public Long getId() {
         return id;
     }

@@ -3,7 +3,6 @@ package io.invoicextech.controlenotas.nfse.api.certificate.domain.model;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/** Aggregate for storing encrypted certificate and metadata. */
 public record CertificateStorage(
         UUID id,
         UUID companyId,

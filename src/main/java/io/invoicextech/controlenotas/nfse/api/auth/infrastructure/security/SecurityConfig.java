@@ -28,17 +28,19 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth ->
                                 auth.requestMatchers(
-                                                "/api/auth/register/company",
-                                                "/api/auth/register/accountant",
-                                                "/api/auth/login",
-                                                "/api/auth/refresh")
+                                                "/api/v1/auth/register/company",
+                                                "/api/v1/auth/register/accountant",
+                                                "/api/v1/auth/login",
+                                                "/api/v1/auth/refresh")
                                         .permitAll()
-                                        .requestMatchers("/api/admin/**")
+                                        .requestMatchers("/api/v1/admin/**")
                                         .hasRole("ADMIN")
-                                        .requestMatchers("/api/company/**")
+                                        .requestMatchers("/api/v1/company/**")
                                         .hasRole("COMPANY")
-                                        .requestMatchers("/api/accountant/**")
+                                        .requestMatchers("/api/v1/accountant/**")
                                         .hasRole("ACCOUNTANT")
+                                        .requestMatchers("/api/v1/companies/**")
+                                        .authenticated()
                                         .anyRequest()
                                         .authenticated())
                 .addFilterBefore(

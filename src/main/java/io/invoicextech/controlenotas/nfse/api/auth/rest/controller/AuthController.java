@@ -30,7 +30,7 @@ import io.invoicextech.controlenotas.nfse.api.auth.rest.response.AuthResponse;
 import io.invoicextech.controlenotas.nfse.api.auth.rest.response.UserResponse;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 
     private final RegisterCompanyUserUseCase registerCompanyUserUseCase;

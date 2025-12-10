@@ -77,7 +77,6 @@ public class JwtTokenProvider implements TokenProvider {
         return expirationMillis;
     }
 
-    // Refresh Token support
     @Override
     public String generateRefreshToken(Long userId, String subject) {
         Instant now = Instant.now();

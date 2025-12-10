@@ -2,11 +2,9 @@ package io.invoicextech.controlenotas.nfse.api.auth.domain.vo;
 
 import java.util.Objects;
 
-/** Value Object for CNPJ (Brazilian company registry). Minimal format validation (14 digits). */
 public final class Cnpj {
-    private static final String NUMBERS_ONLY = "\\d{14}"; // 14 digits
-
-    private final String value; // normalized digits
+    private static final String NUMBERS_ONLY = "\\d{14}";
+    private final String value;
 
     private Cnpj(String value) {
         this.value = value;

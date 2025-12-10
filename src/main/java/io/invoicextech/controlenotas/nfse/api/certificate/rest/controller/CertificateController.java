@@ -1,9 +1,7 @@
 package io.invoicextech.controlenotas.nfse.api.certificate.rest.controller;
 
-import io.invoicextech.controlenotas.nfse.api.certificate.application.dto.CertificateMetadataOutput;
-import io.invoicextech.controlenotas.nfse.api.certificate.application.usecase.CertificateUseCase;
-import io.invoicextech.controlenotas.nfse.api.certificate.rest.mapper.CertificateResponseMapper;
-import io.invoicextech.controlenotas.nfse.api.certificate.rest.response.CertificateMetadataResponse;
+import java.util.UUID;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.UUID;
+import io.invoicextech.controlenotas.nfse.api.certificate.application.dto.CertificateMetadataOutput;
+import io.invoicextech.controlenotas.nfse.api.certificate.application.usecase.CertificateUseCase;
+import io.invoicextech.controlenotas.nfse.api.certificate.rest.mapper.CertificateResponseMapper;
+import io.invoicextech.controlenotas.nfse.api.certificate.rest.response.CertificateMetadataResponse;
 
 @RestController
-@RequestMapping("/api/companies/{companyId}/certificates")
+@RequestMapping("/api/v1/companies/{companyId}/certificates")
 @Validated
 public class CertificateController {
 

@@ -26,7 +26,6 @@ public class CertificateEntity {
     @Column(name = "kms_key_id", nullable = false)
     private String kmsKeyId;
 
-    // Metadata
     @Column(name = "subject_dn")
     private String subjectDn;
 

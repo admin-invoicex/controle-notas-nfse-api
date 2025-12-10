@@ -13,7 +13,6 @@ public interface TokenProvider {
 
     long getExpirationMillis();
 
-    // Refresh Token support
     String generateRefreshToken(Long userId, String subject);
 
     boolean validateRefreshToken(String refreshToken);

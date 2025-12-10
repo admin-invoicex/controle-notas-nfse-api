@@ -2,14 +2,10 @@ package io.invoicextech.controlenotas.nfse.api.auth.domain.vo;
 
 import java.util.Objects;
 
-/**
- * Value Object for CPF (Brazilian individual taxpayer registry). Minimal format validation.
- * Domain-only, no framework dependencies.
- */
 public final class Cpf {
-    private static final String NUMBERS_ONLY = "\\d{11}"; // 11 digits
+    private static final String NUMBERS_ONLY = "\\d{11}";
 
-    private final String value; // normalized (digits only)
+    private final String value;
 
     private Cpf(String value) {
         this.value = value;
