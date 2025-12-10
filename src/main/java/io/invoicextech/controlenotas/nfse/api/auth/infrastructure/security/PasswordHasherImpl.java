@@ -1,9 +1,10 @@
 package io.invoicextech.controlenotas.nfse.api.auth.infrastructure.security;
 
-import io.invoicextech.controlenotas.nfse.api.auth.application.port.PasswordHasher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import io.invoicextech.controlenotas.nfse.api.auth.application.port.PasswordHasher;
 
 @Component
 public class PasswordHasherImpl implements PasswordHasher {

@@ -1,9 +1,9 @@
 package io.invoicextech.controlenotas.nfse.api.auth.application.mapper;
 
+import java.util.stream.Collectors;
+
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.UserOutput;
 import io.invoicextech.controlenotas.nfse.api.auth.domain.model.User;
-
-import java.util.stream.Collectors;
 
 public final class UserOutputMapper {
     private UserOutputMapper() {}
@@ -16,7 +16,6 @@ public final class UserOutputMapper {
                 u.getDocument(),
                 u.getDocumentType().name(),
                 u.isActive(),
-                u.getRoles().stream().map(Enum::name).collect(Collectors.toSet())
-        );
+                u.getRoles().stream().map(Enum::name).collect(Collectors.toSet()));
     }
 }

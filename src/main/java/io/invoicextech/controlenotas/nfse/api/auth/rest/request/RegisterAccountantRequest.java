@@ -9,5 +9,4 @@ public record RegisterAccountantRequest(
         @NotBlank @Email String email,
         @NotBlank @Size(min = 8) String password,
         @NotBlank @Size(min = 8) String confirmPassword,
-        @NotBlank String cpf
-) {}
+        @NotBlank String cpf) {}

@@ -1,13 +1,13 @@
 package io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.mapper;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import io.invoicextech.controlenotas.nfse.api.auth.domain.model.DocumentType;
 import io.invoicextech.controlenotas.nfse.api.auth.domain.model.RoleName;
 import io.invoicextech.controlenotas.nfse.api.auth.domain.model.User;
 import io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.entity.RoleEntity;
 import io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.entity.UserEntity;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public final class UserMapper {
     private UserMapper() {}
@@ -28,14 +28,16 @@ public final class UserMapper {
     }
 
     public static User toDomain(UserEntity e) {
-        User u = User.newUser(
-                e.getName(),
-                e.getEmail(),
-                e.getPasswordHash(),
-                e.getDocument(),
-                DocumentType.valueOf(e.getDocumentType()),
-                e.getRoles().stream().map(r -> RoleName.valueOf(r.getName())).collect(Collectors.toSet())
-        );
+        User u =
+                User.newUser(
+                        e.getName(),
+                        e.getEmail(),
+                        e.getPasswordHash(),
+                        e.getDocument(),
+                        DocumentType.valueOf(e.getDocumentType()),
+                        e.getRoles().stream()
+                                .map(r -> RoleName.valueOf(r.getName()))
+                                .collect(Collectors.toSet()));
         u.setId(e.getId());
         u.setActive(e.isActive());
         u.setCreatedAt(e.getCreatedAt());

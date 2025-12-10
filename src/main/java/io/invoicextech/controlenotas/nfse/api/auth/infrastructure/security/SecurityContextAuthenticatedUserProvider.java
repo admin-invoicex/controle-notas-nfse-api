@@ -1,12 +1,13 @@
 package io.invoicextech.controlenotas.nfse.api.auth.infrastructure.security;
 
-import io.invoicextech.controlenotas.nfse.api.auth.application.port.AuthenticatedUserProvider;
-import io.invoicextech.controlenotas.nfse.api.auth.domain.model.User;
+import java.util.Optional;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import io.invoicextech.controlenotas.nfse.api.auth.application.port.AuthenticatedUserProvider;
+import io.invoicextech.controlenotas.nfse.api.auth.domain.model.User;
 
 @Component
 public class SecurityContextAuthenticatedUserProvider implements AuthenticatedUserProvider {

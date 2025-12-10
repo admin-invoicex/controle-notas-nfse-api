@@ -9,5 +9,4 @@ public record RegisterCompanyRequest(
         @NotBlank @Email String email,
         @NotBlank @Size(min = 8) String password,
         @NotBlank @Size(min = 8) String confirmPassword,
-        @NotBlank String cnpj
-) {}
+        @NotBlank String cnpj) {}

@@ -1,9 +1,10 @@
 package io.invoicextech.controlenotas.nfse.api.auth.application.usecase;
 
+import org.springframework.stereotype.Service;
+
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.UserOutput;
 import io.invoicextech.controlenotas.nfse.api.auth.application.mapper.UserOutputMapper;
 import io.invoicextech.controlenotas.nfse.api.auth.application.port.AuthenticatedUserProvider;
-import org.springframework.stereotype.Service;
 
 @Service
 public class GetAuthenticatedUserUseCase {
@@ -14,7 +15,8 @@ public class GetAuthenticatedUserUseCase {
     }
 
     public UserOutput execute() {
-        return authenticatedUserProvider.currentUser()
+        return authenticatedUserProvider
+                .currentUser()
                 .map(UserOutputMapper::from)
                 .orElseThrow(() -> new IllegalStateException("Usuário não autenticado"));
     }

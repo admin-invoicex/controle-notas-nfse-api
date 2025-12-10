@@ -1,8 +1,8 @@
 package io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.specification;
 
-import io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.entity.UserEntity;
 import org.springframework.data.jpa.domain.Specification;
 
+import io.invoicextech.controlenotas.nfse.api.auth.infrastructure.persistence.entity.UserEntity;
 import jakarta.persistence.criteria.Join;
 
 public final class UserSpecifications {
@@ -20,6 +20,7 @@ public final class UserSpecifications {
     }
 
     public static Specification<UserEntity> hasDocumentType(String documentType) {
-        return (root, query, cb) -> cb.equal(cb.upper(root.get("documentType")), documentType.toUpperCase());
+        return (root, query, cb) ->
+                cb.equal(cb.upper(root.get("documentType")), documentType.toUpperCase());
     }
 }

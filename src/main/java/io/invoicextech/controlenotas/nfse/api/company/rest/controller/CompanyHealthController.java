@@ -9,5 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/company")
 public class CompanyHealthController {
     @GetMapping("/health")
-    public ResponseEntity<String> health() { return ResponseEntity.ok("company-ok"); }
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("company-ok");
+    }
 }
