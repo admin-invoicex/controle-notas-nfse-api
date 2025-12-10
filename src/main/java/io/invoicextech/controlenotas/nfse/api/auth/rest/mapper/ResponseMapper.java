@@ -1,9 +1,9 @@
-package io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.mapper;
+package io.invoicextech.controlenotas.nfse.api.auth.rest.mapper;
 
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.LoginOutput;
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.UserOutput;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.AuthResponse;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.UserResponse;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.response.AuthResponse;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.response.UserResponse;
 
 public final class ResponseMapper {
     private ResponseMapper() {}

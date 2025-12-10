@@ -1,4 +1,4 @@
-package io.invoicextech.controlenotas.nfse.api.company.interface_.rest.controller;
+package io.invoicextech.controlenotas.nfse.api.company.rest.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

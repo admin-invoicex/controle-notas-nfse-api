@@ -1,4 +1,4 @@
-package io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request;
+package io.invoicextech.controlenotas.nfse.api.auth.rest.request;
 
 import jakarta.validation.constraints.NotBlank;
 

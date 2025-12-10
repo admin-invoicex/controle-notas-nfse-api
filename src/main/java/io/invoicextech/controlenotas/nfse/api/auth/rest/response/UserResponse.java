@@ -1,4 +1,4 @@
-package io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response;
+package io.invoicextech.controlenotas.nfse.api.auth.rest.response;
 
 import java.util.Set;
 

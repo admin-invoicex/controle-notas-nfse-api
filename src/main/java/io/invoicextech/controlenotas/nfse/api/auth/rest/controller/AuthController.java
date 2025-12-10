@@ -1,4 +1,4 @@
-package io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.controller;
+package io.invoicextech.controlenotas.nfse.api.auth.rest.controller;
 
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.LoginInput;
 import io.invoicextech.controlenotas.nfse.api.auth.application.dto.LoginOutput;
@@ -11,12 +11,12 @@ import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.LoginUser
 import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.RegisterAccountantUserUseCase;
 import io.invoicextech.controlenotas.nfse.api.auth.application.usecase.RegisterCompanyUserUseCase;
 import io.invoicextech.controlenotas.nfse.api.auth.domain.model.RoleName;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.mapper.ResponseMapper;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.LoginRequest;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.RegisterAccountantRequest;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.request.RegisterCompanyRequest;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.AuthResponse;
-import io.invoicextech.controlenotas.nfse.api.auth.interface_.rest.response.UserResponse;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.mapper.ResponseMapper;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.request.LoginRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.request.RegisterAccountantRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.request.RegisterCompanyRequest;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.response.AuthResponse;
+import io.invoicextech.controlenotas.nfse.api.auth.rest.response.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
