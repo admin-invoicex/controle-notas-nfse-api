@@ -37,12 +37,12 @@ BEGIN
         WHERE p.proname = 'trg_set_updated_at' AND n.nspname = 'public'
     ) THEN
         CREATE OR REPLACE FUNCTION trg_set_updated_at()
-        RETURNS TRIGGER AS $$
+        RETURNS TRIGGER AS $func$
         BEGIN
             NEW.updated_at = NOW();
             RETURN NEW;
         END;
-        $$ LANGUAGE plpgsql;
+        $func$ LANGUAGE plpgsql;
     END IF;
 END $$;
 
